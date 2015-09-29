@@ -1,0 +1,23 @@
+{
+  "name": "mr-potato-head",
+  "version": "1.0.0",
+  "description": "Get an arbitrary, common mysql lock",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liamoehlman/mr-potato-head.git"
+  },
+  "author": "Liam Oehlman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liamoehlman/mr-potato-head/issues"
+  },
+  "homepage": "https://github.com/liamoehlman/mr-potato-head#readme",
+  "dependencies": {
+    "mysql": "^2.9.0"
+  },
+  "keywords": ["lock", "mysql", "potato"]
+}
