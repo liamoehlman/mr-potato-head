@@ -1,32 +1,16 @@
-var mysql = require('mysql'),
-    lockQuery = 'SELECT GET_LOCK(?, ?)';
+var dialects = {
+        mysql: require('./dialects/mysql'),
+        postgres: require('./dialects/postgres')
+    };
 
 function mrPotatoHead(config) {
-    var lockWaitTimeout = config.lockWaitTimeout || 5,
-        lockName = config.lockName || 'mr-potato-head',
-        connection = mysql.createConnection({
-            host: config.host,
-            user: config.user || config.username,
-            password: config.password,
-            database: config.database
-        });
+    var dialect = dialects[config.dialect];
 
-    connection.connect();
+    if (!dialect) {
+        throw new Error('Unsupported database dialect');
+    }
 
-    return {
-        lock: function(callback) {
-            connection.query(lockQuery, [lockName, lockWaitTimeout], function(error, rows) {
-                if (error) {
-                    return callback(error);
-                }
-
-                callback(!rows[0][Object.keys(rows[0])]);
-            });
-        },
-        close: function(callback) {
-            connection.end(callback);
-        }
-    };
+    return dialect(config);
 }
 
 module.exports = mrPotatoHead;

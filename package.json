@@ -1,6 +1,6 @@
 {
   "name": "mr-potato-head",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Get an arbitrary, common mysql lock",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,13 @@
   },
   "homepage": "https://github.com/liamoehlman/mr-potato-head#readme",
   "dependencies": {
-    "mysql": "^2.9.0"
+    "mysql": "^2.9.0",
+    "pg": "^7.4.1",
+    "righto": "^3.2.0"
   },
-  "keywords": ["lock", "mysql", "potato"]
+  "keywords": [
+    "lock",
+    "mysql",
+    "potato"
+  ]
 }
