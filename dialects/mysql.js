@@ -1,10 +1,10 @@
-var mysql = require('mysql'),
+var client = require('mysql'),
     lockQuery = 'SELECT GET_LOCK(?, ?)';
 
 function mysql(config) {
     var lockWaitTimeout = config.lockWaitTimeout || 5,
         lockName = config.lockName || 'mr-potato-head',
-        connection = mysql.createConnection({
+        connection = client.createConnection({
             host: config.host,
             user: config.user || config.username,
             password: config.password,
