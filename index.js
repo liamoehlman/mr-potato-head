@@ -1,13 +1,15 @@
-var dialects = {
-        mysql: require('./dialects/mysql'),
-        postgres: require('./dialects/postgres')
-    };
-
 function mrPotatoHead(config) {
-    var dialect = dialects[config.dialect];
+    let dialect;
 
-    if (!dialect) {
-        throw new Error('Unsupported database dialect');
+    switch (config.dialect) {
+        case 'mysql':
+            dialect = require('./dialects/mysql');
+            break;
+        case 'postgres':
+            dialect = require('./dialects/postgres');
+            break;
+        default:
+            throw new Error('Unsupported database dialect');
     }
 
     return dialect(config);

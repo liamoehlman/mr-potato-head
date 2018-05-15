@@ -1,21 +1,22 @@
-var client = require('mysql'),
-    lockQuery = 'SELECT GET_LOCK(?, ?)';
+const client = require('mysql');
+
+const lockQuery = 'SELECT GET_LOCK(?, ?)';
 
 function mysql(config) {
-    var lockWaitTimeout = config.lockWaitTimeout || 5,
-        lockName = config.lockName || 'mr-potato-head',
-        connection = client.createConnection({
-            host: config.host,
-            user: config.user || config.username,
-            password: config.password,
-            database: config.database
-        });
+    const lockWaitTimeout = config.lockWaitTimeout || 5;
+    const lockName = config.lockName || 'mr-potato-head';
+    const connection = client.createConnection({
+        host: config.host,
+        user: config.user || config.username,
+        password: config.password,
+        database: config.database,
+    });
 
     connection.connect();
 
     return {
         lock: function(callback) {
-            connection.query(lockQuery, [lockName, lockWaitTimeout], function(error, rows) {
+            connection.query(lockQuery, [lockName, lockWaitTimeout], (error, rows) => {
                 if (error) {
                     return callback(error);
                 }
@@ -25,7 +26,7 @@ function mysql(config) {
         },
         close: function(callback) {
             connection.end(callback);
-        }
+        },
     };
 }
 
