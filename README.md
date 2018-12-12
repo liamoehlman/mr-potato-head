@@ -9,7 +9,7 @@ $ npm install --save mr-potato-head
 
 # And one of the following:
 $ npm install --save pg
-$ npm install --save mysql
+$ npm install --save mysql2
 ```
 
 ## Usage

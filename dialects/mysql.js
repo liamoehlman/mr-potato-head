@@ -1,4 +1,4 @@
-const client = require('mysql');
+const client = require('mysql2');
 
 const lockQuery = 'SELECT GET_LOCK(?, ?)';
 
