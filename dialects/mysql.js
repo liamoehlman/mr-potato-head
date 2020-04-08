@@ -7,6 +7,7 @@ function mysql(config) {
     const lockName = config.lockName || 'mr-potato-head';
     const connection = client.createConnection({
         host: config.host,
+        port: config.port || 3306,
         user: config.user || config.username,
         password: config.password,
         database: config.database,
@@ -15,7 +16,7 @@ function mysql(config) {
     connection.connect();
 
     return {
-        lock: function(callback) {
+        lock: function (callback) {
             connection.query(lockQuery, [lockName, lockWaitTimeout], (error, rows) => {
                 if (error) {
                     return callback(error);
@@ -24,7 +25,7 @@ function mysql(config) {
                 callback(!rows[0][Object.keys(rows[0])]);
             });
         },
-        close: function(callback) {
+        close: function (callback) {
             connection.end(callback);
         },
     };
