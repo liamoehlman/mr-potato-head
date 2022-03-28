@@ -1,6 +1,6 @@
 {
   "name": "mr-potato-head",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "Get an arbitrary, common mysql lock",
   "main": "index.js",
   "scripts": {
