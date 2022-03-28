@@ -65,6 +65,7 @@ function postgres(config) {
         user: config.user || config.username,
         password: config.password,
         database: config.database,
+        ssl: config.ssl
     });
 
     connection.connect();
